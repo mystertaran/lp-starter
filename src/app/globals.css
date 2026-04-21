@@ -109,6 +109,15 @@
   /* Typography defaults — display face for headings, body face default */
   h1,
   h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  h1,
+  h2,
   h3 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;

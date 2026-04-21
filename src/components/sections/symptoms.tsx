@@ -21,8 +21,8 @@ export function Symptoms() {
   return (
     <section id="symptomy" className="border-border bg-surface border-b">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
-          <div>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+          <div className="min-w-0">
             <p className="text-muted-foreground mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
               Problem
             </p>

@@ -16,7 +16,8 @@ export function SiteFooter() {
               className="h-9 w-auto brightness-0 invert"
             />
             <p className="font-display text-background mt-6 max-w-sm text-xl leading-tight uppercase">
-              Jedno centrum dowodzenia dla wielokanałowego e-commerce.
+              Jedno centrum dowodzenia dla wielokanałowego{" "}
+              <span className="whitespace-nowrap">e-commerce</span>.
             </p>
           </div>
 

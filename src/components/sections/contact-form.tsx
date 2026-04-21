@@ -75,7 +75,7 @@ export function ContactForm() {
 
   return (
     <section id="kontakt" className="border-border border-b">
-      <div className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
         <div className="max-w-3xl">
           <p className="text-muted-foreground mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
             Kontakt
