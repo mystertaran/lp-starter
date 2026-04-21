@@ -52,6 +52,8 @@ next-env.d.ts
 .claude/settings.local.json
 .claude/skills/
 
-# Design-system extracts — keep docs, skip binaries + proprietary fonts
+# Design-system extracts — keep docs + tokens, skip binaries + proprietary fonts + screens
 design-system/**/fonts/
 design-system/**/*.skill
+design-system/**/screens/
+design-system/**/screenshots/
