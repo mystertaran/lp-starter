@@ -16,12 +16,12 @@ export function SiteHeader() {
             priority
           />
         </Link>
-        <Link
+        <a
           href="#kontakt"
           className="text-foreground decoration-accent hover:text-accent text-sm font-semibold underline decoration-2 underline-offset-4"
         >
           Umów rozmowę
-        </Link>
+        </a>
       </div>
     </header>
   );
