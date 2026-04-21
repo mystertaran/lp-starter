@@ -40,7 +40,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={`${archivo.variable} ${archivoBlack.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col font-sans">{children}</body>
+      <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
+        {children}
+      </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
