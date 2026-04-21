@@ -1,22 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Archivo_Black } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo-black",
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "The Fabos — panuj nad chaosem wielokanałowego e-commerce",
+  title: "The Fabos — jedno centrum dowodzenia dla wielokanałowego e-commerce",
   description:
-    "Jedno miejsce do obsługi wielu kanałów sprzedaży, magazynu, zamówień, wysyłek, zwrotów i księgowości.",
+    "The Fabos spina zamówienia, magazyn, zwroty i księgowość w jedno źródło prawdy. Zamiast kolejnego narzędzia do tego chaosu.",
+  metadataBase: new URL("https://fabos.pl"),
+  openGraph: {
+    title: "The Fabos — jedno centrum dowodzenia dla wielokanałowego e-commerce",
+    description:
+      "Spinamy kanały sprzedaży, fulfillment, zwroty i księgowość w jeden system. Bez wymiany, bez migracji.",
+    locale: "pl_PL",
+    type: "website",
+  },
 };
 
 const rawGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -28,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+    <html lang="pl" className={`${archivo.variable} ${archivoBlack.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col font-sans">{children}</body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
