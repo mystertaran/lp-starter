@@ -11,9 +11,9 @@ export function SiteFooter() {
             <Image
               src={logo}
               alt="The Fabos"
+              width={105}
               height={36}
               className="h-9 w-auto brightness-0 invert"
-              sizes="200px"
             />
             <p className="font-display text-background mt-6 max-w-sm text-xl leading-tight uppercase">
               Jedno centrum dowodzenia dla wielokanałowego e-commerce.
