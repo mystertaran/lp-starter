@@ -171,7 +171,7 @@ Dedykowana platforma operacyjna. Pełna automatyzacja logiki biznesowej. ***Idzi
 
 **Środkowa kolumna — kontakt bezpośredni**
 - **Bartek Kraśniewski**, e-commerce ops
-- bartek@fabos.pl
+- info@thefabos.pl
 - +48 794 433 282
 
 **Prawa kolumna — legal**
@@ -214,7 +214,7 @@ Jeśli pozyskanie licencji / brand assets jest problematyczne, możemy zrobić *
 ## Otwarte pytania do Bartka
 
 1. **Form destination** — gdzie ma lądować wiadomość z formularza?
-   - (a) **email** na bartek@fabos.pl przez serwis transakcyjny (Resend / Postmark / SendGrid)
+   - (a) **email** na info@thefabos.pl przez serwis transakcyjny (Resend / Postmark / SendGrid)
    - (b) **CRM** (HubSpot, Pipedrive, Notion, Airtable)
    - (c) oba — email + zapis do CRM
 2. **Logo partnerów** — czy mamy autoryzację / brand assets od wymienionych firm, czy idziemy text-only?

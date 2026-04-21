@@ -53,9 +53,9 @@ export function ContactForm() {
             Jeśli potrzebujesz nas wcześniej — napisz na{" "}
             <a
               className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-              href="mailto:bartek@fabos.pl"
+              href="mailto:info@thefabos.pl"
             >
-              bartek@fabos.pl
+              info@thefabos.pl
             </a>{" "}
             albo zadzwoń{" "}
             <a

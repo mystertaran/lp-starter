@@ -37,9 +37,9 @@ export default function PrivacyPolicyPage() {
               Kontakt z administratorem:{" "}
               <a
                 className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-                href="mailto:bartek@fabos.pl"
+                href="mailto:info@thefabos.pl"
               >
-                bartek@fabos.pl
+                info@thefabos.pl
               </a>
               , tel. +48 794 433 282.
             </p>
@@ -125,9 +125,9 @@ export default function PrivacyPolicyPage() {
               Aby zrealizować któreś z tych praw, napisz do nas na{" "}
               <a
                 className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-                href="mailto:bartek@fabos.pl"
+                href="mailto:info@thefabos.pl"
               >
-                bartek@fabos.pl
+                info@thefabos.pl
               </a>
               . Odpowiemy w ciągu 30 dni.
             </p>
@@ -174,9 +174,9 @@ export default function PrivacyPolicyPage() {
               Masz pytanie do tej polityki? Napisz na{" "}
               <a
                 className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-                href="mailto:bartek@fabos.pl"
+                href="mailto:info@thefabos.pl"
               >
-                bartek@fabos.pl
+                info@thefabos.pl
               </a>
               .
             </p>

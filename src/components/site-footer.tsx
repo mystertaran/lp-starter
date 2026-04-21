@@ -32,9 +32,9 @@ export function SiteFooter() {
               <li>
                 <a
                   className="decoration-accent hover:text-accent underline decoration-2 underline-offset-4"
-                  href="mailto:bartek@fabos.pl"
+                  href="mailto:info@thefabos.pl"
                 >
-                  bartek@fabos.pl
+                  info@thefabos.pl
                 </a>
               </li>
               <li>

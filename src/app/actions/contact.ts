@@ -55,7 +55,7 @@ export async function submitContact(
     console.error("[contact] RESEND_API_KEY is not configured.");
     return {
       status: "error",
-      message: "Formularz jest tymczasowo niedostępny. Napisz bezpośrednio na bartek@fabos.pl.",
+      message: "Formularz jest tymczasowo niedostępny. Napisz bezpośrednio na info@thefabos.pl.",
     };
   }
 
@@ -63,7 +63,7 @@ export async function submitContact(
   const resend = new Resend(apiKey);
 
   const from = process.env.CONTACT_FROM_EMAIL ?? "The Fabos LP <onboarding@resend.dev>";
-  const to = process.env.CONTACT_TO_EMAIL ?? "bartek@fabos.pl";
+  const to = process.env.CONTACT_TO_EMAIL ?? "info@thefabos.pl";
 
   const lines = [
     "Nowe zapytanie z The Fabos landing page.",
