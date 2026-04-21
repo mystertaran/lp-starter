@@ -95,6 +95,9 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    /* Offset anchor jumps so section headings clear the sticky header. */
+    scroll-padding-top: 5rem;
   }
 
   body {
