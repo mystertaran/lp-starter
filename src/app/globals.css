@@ -151,7 +151,13 @@
 @layer utilities {
   /* Fluid display sizes for marketing headings */
   .text-display-xl {
-    font-size: clamp(2.5rem, 7.5vw, 6.5rem);
+    /*
+     * Capped at 5rem (80px) so the longest atomic tokens we have
+     * ("DOWODZENIA", "E-COMMERCE.") always fit inside the hero's 3fr
+     * column even when the viewport is just above the lg breakpoint.
+     * Gentler 6.5vw scalar so the cap only kicks in on big desktops.
+     */
+    font-size: clamp(1.75rem, 6.5vw, 5rem);
     line-height: 0.95;
     letter-spacing: -0.03em;
   }
