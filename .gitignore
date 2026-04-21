@@ -1,6 +1,8 @@
-# Dependencies
-node_modules/
-.pnp
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -8,30 +10,37 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
-# Next.js
-.next/
-out/
-build/
-dist/
+# testing
+/coverage
 
-# Production
-*.tsbuildinfo
-next-env.d.ts
+# next.js
+/.next/
+/out/
 
-# Debug
+# production
+/build
+
+# misc
+.DS_Store
+Thumbs.db
+desktop.ini
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# Env files
-.env
-.env*.local
-.env.development
-.env.production
+# env files (can opt-in for committing if needed)
+.env*
 
-# Vercel
+# vercel
 .vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
 # IDE
 .vscode/
@@ -39,21 +48,5 @@ yarn-error.log*
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Claude Code (keep shared config, ignore local)
+# Claude Code (keep shared config, ignore local overrides)
 .claude/settings.local.json
-
-# Logs
-logs
-*.log
-
-# Testing
-coverage/
-.nyc_output
-
-# Misc
-*.pem
