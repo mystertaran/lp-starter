@@ -27,12 +27,7 @@ export function Symptoms() {
               Problem
             </p>
             <h2 className="text-display-lg font-display text-foreground uppercase">
-              {
-                // Soft hyphens (­) give the browser permission to break long
-                // polish words at syllable boundaries when the column is too narrow.
-                // They are invisible unless a break actually happens.
-                "Kiedy na­rzę­dzia za­czy­nają prze­szka­dzać zamiast pomagać."
-              }
+              Kiedy narzędzia zaczynają przeszkadzać zamiast pomagać.
             </h2>
           </div>
 

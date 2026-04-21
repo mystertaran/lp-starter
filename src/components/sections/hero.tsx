@@ -11,7 +11,7 @@ export function Hero() {
             <span className="whitespace-nowrap">e-commerce</span>
           </p>
           <h1 className="text-display-xl font-display text-foreground uppercase">
-            {"Jedno centrum do­wo­dze­nia dla Twojego "}
+            Jedno centrum dowodzenia dla Twojego{" "}
             <span className="whitespace-nowrap">e-commerce.</span>
           </h1>
           <p className="text-muted-foreground mt-7 max-w-xl font-sans text-lg leading-relaxed md:text-xl">
