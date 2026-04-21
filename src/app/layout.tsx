@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Archivo_Black } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
+import { CookieBanner } from "@/components/cookie-banner";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -105,8 +107,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" className={`${archivo.variable} ${archivoBlack.variable} h-full antialiased`}>
+      <head>
+        {/*
+         * Google Consent Mode v2 — bootstraps dataLayer and sets every consent
+         * signal to 'denied' BEFORE @next/third-parties loads gtag.js. Updated to
+         * 'granted' by <CookieBanner /> after the user accepts.
+         */}
+        <Script id="gtag-consent-default" strategy="beforeInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'denied','personalization_storage':'denied','security_storage':'granted','wait_for_update':500});`}
+        </Script>
+      </head>
       <body className="flex min-h-full flex-col font-sans" suppressHydrationWarning>
         {children}
+        <CookieBanner />
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>

@@ -132,12 +132,29 @@ export default function PrivacyPolicyPage() {
               . Odpowiemy w ciągu 30 dni.
             </p>
 
-            <h2>6. Pliki cookies</h2>
+            <h2>6. Pliki cookies i Twoja zgoda</h2>
+            <p>Strona używa dwóch kategorii plików cookies:</p>
+            <ul>
+              <li>
+                <strong>Niezbędne</strong> — zapis Twojej preferencji zgody na cookies (klucz{" "}
+                <code>thefabos_consent_v1</code> w localStorage) oraz techniczne cookies platformy
+                hostingowej. Są wymagane do działania strony i nie można ich wyłączyć.
+              </li>
+              <li>
+                <strong>Analityczne</strong> — Google Analytics 4. Ładowane{" "}
+                <strong>tylko po wyrażeniu zgody</strong> w banerze cookies.
+              </li>
+            </ul>
             <p>
-              Strona używa niezbędnych plików cookies technicznych (do działania strony) oraz
-              analitycznych (Google Analytics 4). Możesz w każdej chwili zablokować cookies w
-              ustawieniach przeglądarki — strona będzie działać, ale nie zobaczymy zanonimizowanych
-              statystyk odwiedzin.
+              Stosujemy <strong>Google Consent Mode v2</strong>. Zanim wyrazisz zgodę, skrypt GA4
+              działa w trybie ograniczonym: nie zapisuje plików cookies i nie zbiera
+              identyfikatorów, a do Google przekazywane są wyłącznie anonimowe sygnały służące
+              modelowaniu konwersji (bez danych osobowych).
+            </p>
+            <p>
+              Swoją zgodę możesz w każdej chwili zmienić, klikając{" "}
+              <strong>„Zarządzaj cookies”</strong> w stopce strony, albo całkowicie zablokować
+              cookies w ustawieniach przeglądarki — strona będzie wtedy nadal działać.
             </p>
 
             <h2>7. Automatyczne decyzje i profilowanie</h2>

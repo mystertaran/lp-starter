@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/../public/theFabos_logo.png";
+import { CookieSettingsLink } from "@/components/cookie-settings-link";
 
 export function SiteFooter() {
   return (
@@ -72,13 +73,14 @@ export function SiteFooter() {
 
         <div className="border-background/15 text-background/60 mt-16 flex flex-col gap-4 border-t pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} The Fabos Sp. z o.o. Wszystkie prawa zastrzeżone.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <Link
               href="/polityka-prywatnosci"
               className="decoration-background/30 hover:text-background underline underline-offset-4"
             >
               Polityka prywatności
             </Link>
+            <CookieSettingsLink>Zarządzaj cookies</CookieSettingsLink>
           </div>
         </div>
       </div>
