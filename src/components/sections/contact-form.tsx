@@ -186,12 +186,12 @@ export function ContactForm() {
             />
           </div>
 
-          <label className="text-muted-foreground flex items-start gap-3 text-sm md:col-span-2">
+          <label className="text-muted-foreground flex items-center gap-3 text-sm md:col-span-2">
             <input
               type="checkbox"
               name="consent"
               required
-              className="border-border mt-1 h-4 w-4 shrink-0 border accent-[var(--accent)]"
+              className="border-border h-4 w-4 shrink-0 border accent-[var(--accent)]"
             />
             <span>
               Wyrażam zgodę na przetwarzanie moich danych osobowych w celu kontaktu sprzedażowego.
