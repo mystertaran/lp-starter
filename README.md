@@ -1,6 +1,6 @@
 # fabos-lp
 
-Landing page dla **FabOS** — platformy integrującej kanały sprzedaży e-commerce (magazyn, zamówienia, wysyłki, zwroty, reklamacje, księgowość) w jedno miejsce.
+Landing page dla **The Fabos** — platformy integrującej kanały sprzedaży e-commerce (magazyn, zamówienia, wysyłki, zwroty, reklamacje, księgowość) w jedno miejsce.
 
 ## Stack
 
