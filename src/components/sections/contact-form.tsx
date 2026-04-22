@@ -42,7 +42,7 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <section id="kontakt" className="border-border border-b">
-        <div className="mx-auto max-w-3xl px-6 py-24 text-center lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-3xl px-6 py-16 text-center md:py-24 lg:px-10 lg:py-32">
           <p className="text-accent mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
             Odebrane
           </p>
@@ -75,7 +75,7 @@ export function ContactForm() {
 
   return (
     <section id="kontakt" className="border-border border-b">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10 lg:py-32">
         <div className="max-w-3xl">
           <p className="text-muted-foreground mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
             Kontakt
@@ -92,7 +92,7 @@ export function ContactForm() {
         <form
           action={action}
           onFocusCapture={onFocusCapture}
-          className="mt-12 grid gap-6 md:grid-cols-2"
+          className="mt-10 grid gap-6 md:mt-12 md:grid-cols-2"
           noValidate
         >
           <Field

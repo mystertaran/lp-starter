@@ -25,13 +25,13 @@ const LEVELS = [
 export function Maturity() {
   return (
     <section id="dojrzalosc" className="border-border bg-surface border-b">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10 lg:py-32">
         <div className="max-w-4xl">
           <p className="text-muted-foreground mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
             Gdzie jesteś
           </p>
           <h2 className="text-display-lg font-display text-foreground uppercase">
-            Trzy poziomy dojrzałości operacyjnej.
+            {"Trzy poziomy doj­rza­ło­ści ope­ra­cyj­nej."}
           </h2>
           <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed md:text-xl">
             Pracujemy od poziomu 2. Jeżeli jeszcze nie jesteś gotów — powiemy Ci otwarcie i polecimy
@@ -39,14 +39,14 @@ export function Maturity() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:mt-16 md:gap-6 lg:grid-cols-3">
           {LEVELS.map((l) => (
             <article
               key={l.level}
               className={
                 l.active
-                  ? "border-foreground bg-background flex flex-col border-2 p-8"
-                  : "border-border bg-background flex flex-col border p-8"
+                  ? "border-foreground bg-background flex flex-col border-2 p-6 md:p-8"
+                  : "border-border bg-background flex flex-col border p-6 md:p-8"
               }
             >
               <span className="font-display text-muted-foreground text-sm">{l.level}</span>

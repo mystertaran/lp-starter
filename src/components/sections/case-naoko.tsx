@@ -20,8 +20,8 @@ const EFFECTS = [
 export function CaseNaoko() {
   return (
     <section id="case-naoko" className="border-border border-b">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10 lg:py-32">
+        <div className="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
           <div>
             <p className="text-muted-foreground mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
               Case study

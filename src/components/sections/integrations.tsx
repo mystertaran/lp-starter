@@ -39,7 +39,7 @@ const GROUPS: ReadonlyArray<{ kicker: string; items: readonly string[] }> = [
 export function Integrations() {
   return (
     <section id="integracje" className="border-border bg-surface border-b">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10 lg:py-32">
         <div className="max-w-4xl">
           <p className="text-muted-foreground mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
             Integracje
@@ -53,17 +53,17 @@ export function Integrations() {
           </p>
         </div>
 
-        <div className="mt-16 space-y-14">
+        <div className="mt-12 space-y-10 md:mt-16 md:space-y-14">
           {GROUPS.map((group) => (
             <div key={group.kicker} className="grid gap-6 lg:grid-cols-[18rem_1fr] lg:gap-10">
               <p className="text-muted-foreground text-sm font-semibold tracking-[0.14em] uppercase">
                 {group.kicker}
               </p>
-              <ul className="flex flex-wrap gap-x-8 gap-y-3">
+              <ul className="flex flex-wrap gap-x-6 gap-y-2 md:gap-x-8 md:gap-y-3">
                 {group.items.map((item) => (
                   <li
                     key={item}
-                    className="font-display text-foreground text-xl uppercase md:text-2xl"
+                    className="font-display text-foreground text-lg uppercase md:text-2xl"
                   >
                     {item}
                   </li>
@@ -73,7 +73,7 @@ export function Integrations() {
           ))}
         </div>
 
-        <p className="text-muted-foreground mt-16 max-w-3xl text-lg md:text-xl">
+        <p className="text-muted-foreground mt-12 max-w-3xl text-lg md:mt-16 md:text-xl">
           Nie ma tu czegoś, z czego korzystasz?{" "}
           <a
             href="#kontakt"

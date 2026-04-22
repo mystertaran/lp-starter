@@ -32,10 +32,13 @@ export function KineticWords() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div aria-hidden="true" className="relative h-[420px] w-full overflow-hidden select-none">
+    <div
+      aria-hidden="true"
+      className="relative h-[340px] w-full overflow-hidden select-none md:h-[420px]"
+    >
       {/* Vertical guide line — editorial anchor for the stack */}
       <motion.span
-        className="bg-border absolute top-1/2 left-1/2 h-[360px] w-px -translate-x-1/2 -translate-y-1/2"
+        className="bg-border absolute top-1/2 left-1/2 h-[280px] w-px -translate-x-1/2 -translate-y-1/2 md:h-[360px]"
         initial={reduceMotion ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
         animate={{ scaleY: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}

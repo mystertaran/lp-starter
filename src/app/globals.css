@@ -117,7 +117,11 @@
   h5,
   h6 {
     overflow-wrap: break-word;
-    hyphens: auto;
+    /* Chromium has no polish hyphenation dictionary, so `hyphens: auto`
+       falls back to pixel-boundary breaks. Use `manual` — only the
+       soft-hyphens we explicitly insert (&shy; / U+00AD) can break a word. */
+    hyphens: manual;
+    text-wrap: balance;
   }
   h1,
   h2,
@@ -149,36 +153,31 @@
 }
 
 @layer utilities {
-  /* Fluid display sizes for marketing headings */
+  /* Fluid display sizes for marketing headings.
+   * Mobile (≤~640px) hits the clamp min; values chosen so (a) hero
+   * feels bigger than section heads on every viewport, (b) the longest
+   * uppercase polish words ("PRZESZKADZAĆ", "NAJWIĘKSZYM") still fit
+   * on one line inside `max-w-7xl px-6` at 320–375px.
+   * Line-heights loosened because on mobile these headings wrap to
+   * 3–4 lines — 0.95/1.0 reads as stacked glyphs. */
   .text-display-xl {
-    /*
-     * Capped at 5rem (80px) so the longest atomic tokens we have
-     * ("DOWODZENIA", "E-COMMERCE.") always fit inside the hero's 3fr
-     * column even when the viewport is just above the lg breakpoint.
-     * Gentler 6.5vw scalar so the cap only kicks in on big desktops.
-     */
-    font-size: clamp(1.75rem, 6.5vw, 5rem);
-    line-height: 0.95;
+    font-size: clamp(2rem, 6.5vw, 5rem);
+    line-height: 1;
     letter-spacing: -0.03em;
   }
   .text-display-lg {
-    /*
-     * Capped at 3.5rem (56px) so the longest polish words we use
-     * ("przeszkadzać", "rozwiązanie") always fit within a half-column
-     * of our 7xl container — no mid-word breaks needed.
-     */
-    font-size: clamp(1.75rem, 4.5vw, 3.5rem);
-    line-height: 1;
+    font-size: clamp(1.625rem, 4.5vw, 3.5rem);
+    line-height: 1.05;
     letter-spacing: -0.025em;
   }
   .text-display-md {
-    font-size: clamp(1.875rem, 3.5vw, 2.75rem);
-    line-height: 1.05;
+    font-size: clamp(1.5rem, 3.5vw, 2.75rem);
+    line-height: 1.1;
     letter-spacing: -0.02em;
   }
   .text-display-sm {
-    font-size: clamp(1.375rem, 2.25vw, 1.75rem);
-    line-height: 1.15;
+    font-size: clamp(1.25rem, 2.25vw, 1.75rem);
+    line-height: 1.2;
     letter-spacing: -0.015em;
   }
 }

@@ -20,28 +20,31 @@ const SYMPTOMS = [
 export function Symptoms() {
   return (
     <section id="symptomy" className="border-border bg-surface border-b">
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10 lg:py-32">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           <div className="min-w-0">
             <p className="text-muted-foreground mb-5 text-sm font-semibold tracking-[0.14em] uppercase">
               Problem
             </p>
             <h2 className="text-display-lg font-display text-foreground uppercase">
-              Kiedy narzędzia zaczynają przeszkadzać zamiast pomagać.
+              {"Kiedy na­rzę­dzia za­czy­nają prze­szka­dzać zamiast pomagać."}
             </h2>
           </div>
 
           <ul className="divide-border divide-y">
             {SYMPTOMS.map((item) => (
-              <li key={item.kicker} className="grid grid-cols-[4rem_1fr] gap-8 py-6">
-                <span className="font-display text-accent text-2xl">{item.kicker}</span>
+              <li
+                key={item.kicker}
+                className="grid grid-cols-[2.5rem_1fr] gap-5 py-5 md:grid-cols-[4rem_1fr] md:gap-8 md:py-6"
+              >
+                <span className="font-display text-accent text-xl md:text-2xl">{item.kicker}</span>
                 <p className="text-foreground text-lg md:text-xl">{item.text}</p>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="font-display text-display-md text-foreground mt-20 max-w-3xl uppercase">
+        <p className="font-display text-display-md text-foreground mt-14 max-w-3xl uppercase md:mt-20">
           Im większa sprzedaż, <span className="text-accent">tym większy chaos.</span>
         </p>
       </div>
