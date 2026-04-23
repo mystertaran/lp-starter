@@ -27,6 +27,19 @@ This project uses **Next.js 16** + **React 19** + **Tailwind v4** + **shadcn/ui 
 - **Aliases:** `@/*` → `src/*`. Komponenty shadcn w `src/components/ui/`, `cn()` w `src/lib/utils.ts`.
 - **Fonts:** Geist + Geist Mono przez `next/font/google`, CSS vars `--font-geist-sans` / `--font-geist-mono`.
 
+## Analytics is part of every feature
+
+Analytics to nie opcjonalny dodatek. Jeśli dodajesz, zmieniasz lub przenosisz stronę, formularz, CTA albo jakąkolwiek interaktywną powierzchnię — **wepnij ją w GA4**. Infra jest gotowa:
+
+- `GoogleAnalytics` jest w root layoucie (`src/app/layout.tsx`) — `page_view` leci automatycznie dla każdego route (w tym nowych jak `/konkurs`). Do tego nie dotykasz.
+- Custom eventy emituj **wyłącznie** przez typowany helper `trackEvent(name, params)` z `src/lib/analytics.ts`. Surowego `gtag` / `sendGAEvent` nie wywołujemy — każdy nowy event musi mieć typ w `AnalyticsEvents`, żeby IDE łapał literówki.
+- Konwencje nazewnicze (trzymaj się wzorców `contact_form_*`, `konkurs_form_*`, `hero_cta_click`):
+  - `*_form_start` — pierwszy `focus` w formularzu (uncontrolled, flaga w `useRef`).
+  - `*_form_submit` — odpala się z `useEffect` zależnym od `state.status === "success"` po Server Action.
+  - `*_cta_click` — kliknięcie przycisku/linku CTA, z paramem `location` gdy CTA pojawia się w kilku miejscach.
+- Czysty `useActionState` gubi dane wejściowe po sukcesie, więc jeśli event submit wymaga parametru z formularza (np. wybrana odpowiedź w `konkurs_form_submit: { answer }`), trzymaj bieżącą wartość w `useRef` aktualizowanym z `onChange` na polu — nie dodawaj `useState` tylko dla analityki.
+- Nie emituj eventów „na zapas". Ale nowy formularz albo nowe primary CTA **bez** eventów to bug, nie skrót.
+
 ## Tooling
 
 - **Package manager: pnpm** (10.x). `pnpm install`, `pnpm dev`, `pnpm build`, `pnpm lint`, `pnpm format`, `pnpm typecheck`.

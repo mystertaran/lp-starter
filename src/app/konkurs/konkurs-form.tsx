@@ -1,9 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { submitKonkurs, type KonkursState } from "@/app/actions/konkurs";
+import { trackEvent } from "@/lib/analytics";
 
 const ANSWERS = ["NAOKU", "NAOKO STUDIO", "NOOKO"] as const;
+type Answer = (typeof ANSWERS)[number];
 
 const INITIAL: KonkursState = { status: "idle" };
 
@@ -12,6 +14,20 @@ const PINK_DEEP = "oklch(0.6 0.26 355)";
 
 export function KonkursForm() {
   const [state, action, pending] = useActionState<KonkursState, FormData>(submitKonkurs, INITIAL);
+  const startedRef = useRef(false);
+  const answerRef = useRef<Answer | "">("");
+
+  useEffect(() => {
+    if (state.status === "success" && answerRef.current) {
+      trackEvent("konkurs_form_submit", { answer: answerRef.current });
+    }
+  }, [state.status]);
+
+  function onFocusCapture() {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    trackEvent("konkurs_form_start", {});
+  }
 
   if (state.status === "success") {
     return (
@@ -46,6 +62,7 @@ export function KonkursForm() {
 
       <form
         action={action}
+        onFocusCapture={onFocusCapture}
         className="flex flex-col gap-4 p-8 md:p-12 lg:p-14"
         style={{ backgroundColor: PINK }}
         noValidate
@@ -64,6 +81,10 @@ export function KonkursForm() {
               required
               defaultValue=""
               aria-invalid={fieldErrors.answer ? "true" : undefined}
+              onChange={(e) => {
+                const v = e.currentTarget.value;
+                answerRef.current = (ANSWERS as readonly string[]).includes(v) ? (v as Answer) : "";
+              }}
               className="text-foreground block h-12 w-full appearance-none border-0 bg-white pr-12 pl-4 text-base outline-none focus:ring-2 focus:ring-white"
             >
               <option value="" disabled>
