@@ -31,7 +31,9 @@ export function Maturity() {
             Gdzie jesteś
           </p>
           <h2 className="text-display-lg font-display text-foreground uppercase">
-            {"Trzy poziomy doj­rza­ło­ści ope­ra­cyj­nej."}
+            Trzy poziomy
+            <br className="md:hidden" /> dojrzałości
+            <br className="md:hidden" /> operacyjnej.
           </h2>
           <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed md:text-xl">
             Pracujemy od poziomu 2. Jeżeli jeszcze nie jesteś gotów — powiemy Ci otwarcie i polecimy

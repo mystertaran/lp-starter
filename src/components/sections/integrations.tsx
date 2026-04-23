@@ -74,7 +74,8 @@ export function Integrations() {
         </div>
 
         <p className="text-muted-foreground mt-12 max-w-3xl text-lg md:mt-16 md:text-xl">
-          Nie ma tu czegoś, z czego korzystasz?{" "}
+          Nie ma tu czegoś, z czego korzystasz?
+          <br className="md:hidden" />{" "}
           <a
             href="#kontakt"
             className="text-foreground decoration-accent hover:text-accent font-semibold underline decoration-2 underline-offset-4"

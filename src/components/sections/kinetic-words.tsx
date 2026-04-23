@@ -34,7 +34,7 @@ export function KineticWords() {
   return (
     <div
       aria-hidden="true"
-      className="relative h-[340px] w-full overflow-hidden select-none md:h-[420px]"
+      className="relative h-[400px] w-full overflow-hidden select-none md:h-[420px]"
     >
       {/* Vertical guide line — editorial anchor for the stack */}
       <motion.span

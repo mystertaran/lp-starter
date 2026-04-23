@@ -62,7 +62,7 @@ export function ContactForm() {
               className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
               href="tel:+48794433282"
             >
-              +48 794 433 282
+              <span className="whitespace-nowrap">+48 794 433 282</span>
             </a>
             .
           </p>

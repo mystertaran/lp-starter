@@ -38,8 +38,9 @@ export function Solution() {
             Rozwiązanie
           </p>
           <h2 className="text-display-lg font-display text-foreground uppercase">
-            {"Nie kolejna in­te­gra­cja. "}
-            <span className="text-accent">Ar­chi­tek­tura.</span>
+            Nie kolejna
+            <br className="md:hidden" /> integracja.
+            <br className="md:hidden" /> <span className="text-accent">Architektura.</span>
           </h2>
           <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed md:text-xl">
             Zamiast łatać dziury kolejnymi narzędziami — jedno centrum operacyjne, które staje się
