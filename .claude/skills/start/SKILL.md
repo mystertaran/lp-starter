@@ -44,7 +44,7 @@ Ask in **sequential blocks**, not all at once. After each block, save what you h
 4. Theme — light or dark.
 5. Accent color — hex or OKLCH. Default: signal orange `#FF4C00` / `oklch(0.66 0.22 38)`.
 6. Display font + body font. Defaults already in repo: **Archivo Black** + **Archivo**. If user wants different, remind: NO Inter, DM Sans, Plus Jakarta Sans, Space Grotesk, IBM Plex, Geist — those are AI-default reflexes.
-7. **Reference brands** — name 1–3 brands whose design language feels close to what they want. Examples: *Revolut*, *Shopify*, *Linear*, *Stripe*, *Notion*, *Financial Times*. Critical: this is the single best lever for design quality. If the user names a brand that has a matching design-system skill installed (`revolut-design`, `shopify-design`, etc.) — note it, you'll wire it in during the build phase.
+7. **Reference sites (URLs)** — ask for 1–3 actual production URLs whose design feels close to what they want. Examples: *https://revolut.com*, *https://shopify.com*, *https://linear.app*, *https://stripe.com*, *https://notion.so*, *https://ft.com*. **This is the single most important answer in the whole interview** — every later step (shape, craft, audit) leans on these. URLs only — not just brand names — because we will scrape them.
 8. Anti-references — name 1–2 competitors or aesthetics the brand is the opposite of.
 
 ### Block 4 — Pages
@@ -82,41 +82,107 @@ Update the `SITE` object with `product`, `domain`, `tagline`, `company.*`, `cont
 
 `src/app/globals.css` defines OKLCH tokens at the `:root` level. Change `--accent` and `--ring` to the user's choice. Run a quick contrast sanity check — accent foreground must be AA against the accent background.
 
-### 5. Section design — from scratch, not search-replace
+### 5. Capture reference site design (Playwright/chrome-devtools)
+
+For every URL the user gave in Block 3 question 7, you must produce a project-local design reference. Steps per URL:
+
+**5a. Check if a matching brand-system skill already exists.**
+
+If the URL is `revolut.com` and a `revolut-design` Skill is listed in the system-reminder — that skill IS the captured reference. Read its `references/DESIGN.md`, `LAYOUT.md`, `COMPONENTS.md`, `INTERACTIONS.md`, `ANIMATIONS.md`. Add a pointer to it in `.impeccable.md` under `### Reference Brands`. Skip 5b for that URL.
+
+Same for `shopify.com` → `shopify-design`. Other brand-system skills may exist; check the system-reminder list.
+
+**5b. For URLs without an existing skill — scrape with chrome-devtools MCP (preferred) or Playwright.**
+
+Save outputs under `references/<sanitized-host>/` (e.g. `references/linear-app/`). Use chrome-devtools MCP tools if available (`mcp__chrome-devtools__new_page`, `evaluate_script`, `take_screenshot`). Fall back to a Node script using the `playwright` package already in `devDependencies` if MCP is not available.
+
+Capture per URL:
+
+1. **Load the page** with desktop viewport `1440x900x2`. Wait for network idle / fonts loaded.
+2. **Computed-style sweep** — run an `evaluate_script` that pulls computed styles for representative elements:
+   ```js
+   () => {
+     const get = (sel) => {
+       const el = document.querySelector(sel);
+       if (!el) return null;
+       const cs = getComputedStyle(el);
+       const r = el.getBoundingClientRect();
+       return {
+         tag: el.tagName.toLowerCase(),
+         fontFamily: cs.fontFamily,
+         fontSize: cs.fontSize,
+         fontWeight: cs.fontWeight,
+         lineHeight: cs.lineHeight,
+         letterSpacing: cs.letterSpacing,
+         color: cs.color,
+         backgroundColor: cs.backgroundColor,
+         padding: cs.padding,
+         borderRadius: cs.borderRadius,
+         text: (el.innerText || '').slice(0, 80),
+         width: Math.round(r.width),
+         height: Math.round(r.height),
+       };
+     };
+     return {
+       url: location.href,
+       viewport: { w: innerWidth, h: innerHeight, dpr: devicePixelRatio },
+       html: get('html'),
+       body: get('body'),
+       h1: get('h1'),
+       h2: get('h2'),
+       p: get('p'),
+       button: get('button, a[role="button"], a[class*="btn" i], a[class*="button" i]'),
+       cta: get('a[class*="primary" i], a[class*="cta" i], button[class*="primary" i]'),
+       nav: get('nav, header'),
+       footer: get('footer'),
+     };
+   }
+   ```
+   Save the returned JSON as `references/<host>/styles.json`.
+3. **Color palette** — second `evaluate_script` that walks the DOM and counts unique non-transparent `backgroundColor` and `color` values across elements with non-trivial size. Save top 12 of each as `references/<host>/palette.json`.
+4. **Spacing rhythm** — measure vertical gaps between top-level `<section>` elements and primary headings. Save as `references/<host>/spacing.json`.
+5. **Screenshots** — `take_screenshot` for: viewport (top of page), full-page (`fullPage: true`), and a tightly-cropped hero (the first `<section>` or first 800px). Save as `references/<host>/hero.png`, `full.png`, `viewport.png`.
+6. **Synthesize.** Read all the captured JSONs + your impression of the screenshots and write `references/<host>/DESIGN.md` — a tight (under 200-line) brief in the same shape as the existing `revolut-design` and `shopify-design` skills' `references/DESIGN.md`. Cover: typography scale, color tokens (with OKLCH conversions), spacing scale, button / CTA pattern, layout grid + max-width, motion budget. Be specific with numbers, not adjectives.
+7. **Add a pointer** in the project's `.impeccable.md` under `### Reference Brands`:
+   `- {{site-name}} — see references/<host>/DESIGN.md`.
+
+**5c. Sanity-check.** Show the user the synthesized DESIGN.md for each scraped site and ask "good/edit/skip?" before moving on. They know their references better than the scraper does.
+
+### 6. Section design — from scratch, not search-replace
 
 This is the most important step and the one that's easiest to do badly. The default sections in this template (`hero.tsx`, `symptoms.tsx`, `solution.tsx`, etc.) carry an **opinionated layout** from the FabOS LP they were extracted from — same 7-section flow, same kinetic-words component, same grid in the modules list. If you just rewrite the strings inside, the result will look like a re-skin of FabOS, not a new design system. The user almost certainly does not want that.
 
 **Do NOT just search-replace copy**. Instead:
 
-1. **Activate brand-system skills** for any reference brand the user named in Block 3 with a matching `<name>-design` skill. Examples: if they said Revolut → use the `revolut-design` Skill (it provides exact tokens, type scale, spacing, animations, layout patterns). If Shopify → `shopify-design`. The skills are listed in the system-reminder; only use ones that are actually present.
+1. **Load the reference design context.** Read every `references/<host>/DESIGN.md` produced in step 5, plus any matching brand-system skill's `references/*.md`. These are now the authoritative source for tokens, type scale, spacing, components — they override any improvised choice.
 
-2. **Run `/impeccable shape` for the page as a whole.** Inputs: `.impeccable.md`, the Block 3/4 answers, and the activated brand-system skills. Output: a design brief — which sections, in which order, with which density and motion budget. The brief may include sections that don't exist as files (e.g., a metrics band, a testimonial, a comparison table) and may exclude default sections that don't fit (e.g., kinetic-words has very specific energy that won't fit every brand).
+2. **Run `/impeccable shape` for the page as a whole.** Inputs: `.impeccable.md`, the Block 3/4 answers, and the captured reference DESIGN.md files. Output: a design brief — which sections, in which order, with which density and motion budget. The brief may include sections that don't exist as files (e.g., a metrics band, a testimonial, a comparison table) and may exclude default sections that don't fit (e.g., kinetic-words has very specific energy that won't fit every brand).
 
 3. **Reconcile against existing files.** Before crafting:
    - Sections in the brief that already exist as files → keep, mark for full rewrite (not Edit).
    - Sections in the brief that don't exist → create new files in `src/components/sections/`.
    - Sections that exist but aren't in the brief → **delete** them (`git rm`). Don't leave dead code.
 
-4. **For each section in brief order, run `/impeccable craft <section-name>`.** Pass the activated brand-system skill in scope. Each craft pass produces 2-3 directions for review before code lands. Wire it as a full new file, not an Edit of the placeholder.
+4. **For each section in brief order, run `/impeccable craft <section-name>`.** Pass the captured references and any brand-system skill in scope. Each craft pass produces 2-3 directions for review before code lands. Wire it as a full new file, not an Edit of the placeholder.
 
 5. **Update `src/app/page.tsx`** to compose the new section order. Remove imports for deleted sections; add imports for new ones.
 
-If the user explicitly says "I trust your judgment, just build it without showing me alternatives" — fine, skip the multi-direction review but keep step 1-4 (still activate brand-system skills, still run shape, still craft from scratch).
+If the user explicitly says "I trust your judgment, just build it without showing me alternatives" — fine, skip the multi-direction review but keep step 1-4 (still load references, still run shape, still craft from scratch).
 
 What you must NOT do: open the existing `hero.tsx` or `solution.tsx`, change a few strings, and call it done. That produces a copy of FabOS LP with a different brand name, which is the failure mode this section is designed to prevent.
 
-### 6. Additional routes
+### 7. Additional routes
 
 For each new route from Block 4:
 - Create `src/app/<route>/page.tsx`.
 - If it has its own form, create `src/app/actions/<route>.ts` mirroring the contact action's Resend + Zod pattern.
 - Wire analytics events: add `<route>_form_start`, `<route>_form_submit`, etc. to `AnalyticsEvents` in `src/lib/analytics.ts`. Emit them per the convention in AGENTS.md.
 
-### 7. Privacy policy
+### 8. Privacy policy
 
 `src/app/polityka-prywatnosci/page.tsx` already pulls from `SITE` — verify it reads correctly with the user's company data. Ask the user: do you have a final last-updated date and a lawyer-approved version? Replace `UPDATED_AT` and any clauses that don't match their data flow.
 
-### 8. Production env vars (don't touch — just instruct)
+### 9. Production env vars (don't touch — just instruct)
 
 Tell the user to set on Vercel (or their hosting):
 - `RESEND_API_KEY`
