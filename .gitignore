@@ -49,9 +49,8 @@ next-env.d.ts
 *.swp
 *.swo
 
-# Claude Code (keep shared config, ignore local overrides + generated symlinks)
+# Claude Code (keep shared config + project skills, ignore local overrides only)
 .claude/settings.local.json
-.claude/skills/
 docs/
 
 # Design-system extracts — keep docs + tokens, skip binaries + proprietary fonts + screens
