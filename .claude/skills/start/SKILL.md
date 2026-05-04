@@ -44,7 +44,8 @@ Ask in **sequential blocks**, not all at once. After each block, save what you h
 4. Theme — light or dark.
 5. Accent color — hex or OKLCH. Default: signal orange `#FF4C00` / `oklch(0.66 0.22 38)`.
 6. Display font + body font. Defaults already in repo: **Archivo Black** + **Archivo**. If user wants different, remind: NO Inter, DM Sans, Plus Jakarta Sans, Space Grotesk, IBM Plex, Geist — those are AI-default reflexes.
-7. Anti-references — name 1–2 competitors or aesthetics the brand is the opposite of.
+7. **Reference brands** — name 1–3 brands whose design language feels close to what they want. Examples: *Revolut*, *Shopify*, *Linear*, *Stripe*, *Notion*, *Financial Times*. Critical: this is the single best lever for design quality. If the user names a brand that has a matching design-system skill installed (`revolut-design`, `shopify-design`, etc.) — note it, you'll wire it in during the build phase.
+8. Anti-references — name 1–2 competitors or aesthetics the brand is the opposite of.
 
 ### Block 4 — Pages
 
@@ -81,14 +82,28 @@ Update the `SITE` object with `product`, `domain`, `tagline`, `company.*`, `cont
 
 `src/app/globals.css` defines OKLCH tokens at the `:root` level. Change `--accent` and `--ring` to the user's choice. Run a quick contrast sanity check — accent foreground must be AA against the accent background.
 
-### 5. Section copy
+### 5. Section design — from scratch, not search-replace
 
-For each section the user kept, **DO NOT rewrite blindly**. Instead:
+This is the most important step and the one that's easiest to do badly. The default sections in this template (`hero.tsx`, `symptoms.tsx`, `solution.tsx`, etc.) carry an **opinionated layout** from the FabOS LP they were extracted from — same 7-section flow, same kinetic-words component, same grid in the modules list. If you just rewrite the strings inside, the result will look like a re-skin of FabOS, not a new design system. The user almost certainly does not want that.
 
-- Tell the user: "I'll now run `/impeccable craft <section>` for each section. That gives you 2-3 design directions per section before code lands."
-- For each section in order, hand off to `/impeccable craft <section-name>` with the relevant context from .impeccable.md.
+**Do NOT just search-replace copy**. Instead:
 
-If the user says "just replace the placeholder copy directly, no design alternatives" — fine, then `Edit` each section file with literal copy that matches the brand voice from .impeccable.md.
+1. **Activate brand-system skills** for any reference brand the user named in Block 3 with a matching `<name>-design` skill. Examples: if they said Revolut → use the `revolut-design` Skill (it provides exact tokens, type scale, spacing, animations, layout patterns). If Shopify → `shopify-design`. The skills are listed in the system-reminder; only use ones that are actually present.
+
+2. **Run `/impeccable shape` for the page as a whole.** Inputs: `.impeccable.md`, the Block 3/4 answers, and the activated brand-system skills. Output: a design brief — which sections, in which order, with which density and motion budget. The brief may include sections that don't exist as files (e.g., a metrics band, a testimonial, a comparison table) and may exclude default sections that don't fit (e.g., kinetic-words has very specific energy that won't fit every brand).
+
+3. **Reconcile against existing files.** Before crafting:
+   - Sections in the brief that already exist as files → keep, mark for full rewrite (not Edit).
+   - Sections in the brief that don't exist → create new files in `src/components/sections/`.
+   - Sections that exist but aren't in the brief → **delete** them (`git rm`). Don't leave dead code.
+
+4. **For each section in brief order, run `/impeccable craft <section-name>`.** Pass the activated brand-system skill in scope. Each craft pass produces 2-3 directions for review before code lands. Wire it as a full new file, not an Edit of the placeholder.
+
+5. **Update `src/app/page.tsx`** to compose the new section order. Remove imports for deleted sections; add imports for new ones.
+
+If the user explicitly says "I trust your judgment, just build it without showing me alternatives" — fine, skip the multi-direction review but keep step 1-4 (still activate brand-system skills, still run shape, still craft from scratch).
+
+What you must NOT do: open the existing `hero.tsx` or `solution.tsx`, change a few strings, and call it done. That produces a copy of FabOS LP with a different brand name, which is the failure mode this section is designed to prevent.
 
 ### 6. Additional routes
 
