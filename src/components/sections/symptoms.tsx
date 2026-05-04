@@ -1,20 +1,8 @@
 const SYMPTOMS = [
-  {
-    kicker: "01",
-    text: "Dane leżą w 7 miejscach — żadne nie jest wiarygodne.",
-  },
-  {
-    kicker: "02",
-    text: "Zespół każdego dnia uzgadnia stany magazynowe ręcznie.",
-  },
-  {
-    kicker: "03",
-    text: "Każdy dział widzi zamówienie inaczej — BOK, magazyn, księgowość.",
-  },
-  {
-    kicker: "04",
-    text: "Zwroty rozchodzą się bez centralnej widoczności.",
-  },
+  { kicker: "01", text: "Dane są w kilku miejscach — żadne nie jest pełne." },
+  { kicker: "02", text: "Zespół codziennie godzi te same liczby ręcznie." },
+  { kicker: "03", text: "Każdy dział widzi inny stan — i każdy ma rację po swojemu." },
+  { kicker: "04", text: "Procesy „gdzieś się rozchodzą” — nikt nie wie gdzie." },
 ] as const;
 
 export function Symptoms() {
@@ -27,7 +15,7 @@ export function Symptoms() {
               Problem
             </p>
             <h2 className="text-display-lg font-display text-foreground uppercase">
-              {"Kiedy na­rzę­dzia za­czy­nają prze­szka­dzać zamiast pomagać."}
+              Kiedy narzędzia zaczynają przeszkadzać zamiast pomagać.
             </h2>
           </div>
 
@@ -45,7 +33,7 @@ export function Symptoms() {
         </div>
 
         <p className="font-display text-display-md text-foreground mt-14 max-w-3xl uppercase md:mt-20">
-          Im większa sprzedaż, <span className="text-accent">tym większy chaos.</span>
+          Im większy biznes, <span className="text-accent">tym większy chaos.</span>
         </p>
       </div>
     </section>

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Polityka prywatności — The Fabos",
-  description:
-    "Zasady przetwarzania danych osobowych w The Fabos Sp. z o.o. — formularz kontaktowy, Google Analytics 4, Twoje prawa.",
+  title: `Polityka prywatności — ${SITE.product}`,
+  description: `Zasady przetwarzania danych osobowych w ${SITE.company.legal} — formularz kontaktowy, Google Analytics 4, Twoje prawa.`,
 };
 
-const UPDATED_AT = "21 kwietnia 2026";
+const UPDATED_AT = "TODO — uzupełnij datę";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -28,38 +28,35 @@ export default function PrivacyPolicyPage() {
           <div className="prose prose-neutral text-foreground [&_h2]:font-display mt-12 max-w-none text-base leading-relaxed [&_h2]:mt-14 [&_h2]:mb-4 [&_h2]:text-xl [&_h2]:tracking-tight [&_h2]:uppercase [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-base [&_h3]:font-semibold [&_li]:mt-2 [&_p]:mt-4 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-5">
             <h2>1. Administrator danych</h2>
             <p>
-              Administratorem Twoich danych osobowych jest <strong>The Fabos Sp. z o.o.</strong> z
-              siedzibą w Łodzi, ul. Pomorska 175 lok. 26, 90-236 Łódź, wpisana do rejestru
-              przedsiębiorców KRS pod numerem 0001226281, NIP 7252364610, REGON 544067052 (dalej:
-              „My” lub „The Fabos”).
+              Administratorem Twoich danych osobowych jest <strong>{SITE.company.legal}</strong> z
+              siedzibą pod adresem {SITE.company.address1}, {SITE.company.address2}, NIP{" "}
+              {SITE.company.nip}, KRS {SITE.company.krs}, REGON {SITE.company.regon} (dalej: „My”).
             </p>
             <p>
               Kontakt z administratorem:{" "}
               <a
                 className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-                href="mailto:info@thefabos.pl"
+                href={`mailto:${SITE.contact.email}`}
               >
-                info@thefabos.pl
+                {SITE.contact.email}
               </a>
-              , tel. +48 794 433 282.
+              , tel. {SITE.contact.phone}.
             </p>
 
             <h2>2. Jakie dane zbieramy i w jakim celu</h2>
             <h3>2.1. Formularz kontaktowy</h3>
-            <p>Gdy wypełniasz formularz kontaktowy na stronie fabos.pl, zbieramy:</p>
+            <p>Gdy wypełniasz formularz kontaktowy, zbieramy:</p>
             <ul>
               <li>imię i nazwisko,</li>
-              <li>nazwę firmy lub domenę sklepu,</li>
+              <li>nazwę firmy,</li>
               <li>adres e-mail,</li>
               <li>opcjonalnie numer telefonu,</li>
-              <li>wolumen zamówień miesięcznie,</li>
-              <li>kanały sprzedaży, z których korzystasz,</li>
               <li>opcjonalnie wiadomość, którą wpisujesz w pole tekstowe.</li>
             </ul>
             <p>
-              Cel: nawiązanie kontaktu handlowego i odpowiedź na Twoje zapytanie. Podstawa prawna:
-              art. 6 ust. 1 lit. a RODO (Twoja zgoda) oraz art. 6 ust. 1 lit. f RODO (nasz prawnie
-              uzasadniony interes w prowadzeniu rozmów handlowych).
+              Cel: nawiązanie kontaktu i odpowiedź na Twoje zapytanie. Podstawa prawna: art. 6 ust.
+              1 lit. a RODO (Twoja zgoda) oraz art. 6 ust. 1 lit. f RODO (nasz prawnie uzasadniony
+              interes w prowadzeniu rozmów handlowych).
             </p>
 
             <h3>2.2. Analityka ruchu (Google Analytics 4)</h3>
@@ -125,9 +122,9 @@ export default function PrivacyPolicyPage() {
               Aby zrealizować któreś z tych praw, napisz do nas na{" "}
               <a
                 className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-                href="mailto:info@thefabos.pl"
+                href={`mailto:${SITE.contact.email}`}
               >
-                info@thefabos.pl
+                {SITE.contact.email}
               </a>
               . Odpowiemy w ciągu 30 dni.
             </p>
@@ -136,9 +133,9 @@ export default function PrivacyPolicyPage() {
             <p>Strona używa dwóch kategorii plików cookies:</p>
             <ul>
               <li>
-                <strong>Niezbędne</strong> — zapis Twojej preferencji zgody na cookies (klucz{" "}
-                <code>thefabos_consent_v1</code> w localStorage) oraz techniczne cookies platformy
-                hostingowej. Są wymagane do działania strony i nie można ich wyłączyć.
+                <strong>Niezbędne</strong> — zapis Twojej preferencji zgody na cookies oraz
+                techniczne cookies platformy hostingowej. Są wymagane do działania strony i nie
+                można ich wyłączyć.
               </li>
               <li>
                 <strong>Analityczne</strong> — Google Analytics 4. Ładowane{" "}
@@ -174,9 +171,9 @@ export default function PrivacyPolicyPage() {
               Masz pytanie do tej polityki? Napisz na{" "}
               <a
                 className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-                href="mailto:info@thefabos.pl"
+                href={`mailto:${SITE.contact.email}`}
               >
-                info@thefabos.pl
+                {SITE.contact.email}
               </a>
               .
             </p>

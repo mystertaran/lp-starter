@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Google Consent Mode v2 wiring for The Fabos.
+ * Google Consent Mode v2 wiring.
  *
  * Before any consent decision:
  *   - the inline script in the root layout pushes `gtag('consent', 'default', { ... 'denied' })`
@@ -20,8 +20,8 @@ export type ConsentState = {
   timestamp: number;
 };
 
-export const CONSENT_STORAGE_KEY = "thefabos_consent_v1";
-export const CONSENT_OPEN_EVENT = "fabos:open-consent";
+export const CONSENT_STORAGE_KEY = "lp_consent_v1";
+export const CONSENT_OPEN_EVENT = "lp:open-consent";
 
 type GtagWindow = {
   gtag?: (...args: unknown[]) => void;

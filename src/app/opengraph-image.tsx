@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
+import { SITE } from "@/lib/site";
 
-export const alt = "The Fabos — jedno centrum dowodzenia dla wielokanałowego e-commerce";
+export const alt = `${SITE.product} — ${SITE.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,8 +31,8 @@ export default function OpengraphImage() {
           color: "#6E6A63",
         }}
       >
-        <span>The Fabos</span>
-        <span>Operations platform</span>
+        <span>{SITE.product}</span>
+        <span>Landing</span>
       </div>
 
       <div
@@ -46,11 +47,7 @@ export default function OpengraphImage() {
           color: "#0A0A0A",
         }}
       >
-        <span>Jedno centrum</span>
-        <span>dowodzenia dla</span>
-        <span>
-          wielokanałowego <span style={{ color: "#FF4C00" }}>e-commerce.</span>
-        </span>
+        <span>{SITE.tagline}</span>
       </div>
 
       <div
@@ -63,9 +60,11 @@ export default function OpengraphImage() {
         }}
       >
         <span style={{ maxWidth: 780, lineHeight: 1.3, color: "#2A2825" }}>
-          Spina kanały sprzedaży, fulfillment, zwroty i księgowość w jedno źródło prawdy.
+          {SITE.product} — jedno źródło prawdy o Twoim biznesie.
         </span>
-        <span style={{ fontWeight: 700, letterSpacing: "0.08em" }}>fabos.pl</span>
+        <span style={{ fontWeight: 700, letterSpacing: "0.08em" }}>
+          {new URL(SITE.domain).hostname}
+        </span>
       </div>
     </div>,
     { ...size }

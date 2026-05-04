@@ -1,38 +1,15 @@
 const GROUPS: ReadonlyArray<{ kicker: string; items: readonly string[] }> = [
   {
-    kicker: "Sklep i marketplace",
-    items: ["Shopify", "Shoper", "Selly", "Triso Shop", "Allegro", "Amazon", "Empik"],
+    kicker: "Grupa pierwsza",
+    items: ["Narzędzie A", "Narzędzie B", "Narzędzie C", "Narzędzie D"],
   },
   {
-    kicker: "Fulfillment, kurierzy, zwroty",
-    items: [
-      "Integriser",
-      "W2S",
-      "InPost",
-      "DPD",
-      "DHL",
-      "GLS",
-      "Wygodne Zwroty",
-      "Własny portal zwrotów",
-    ],
+    kicker: "Grupa druga",
+    items: ["Narzędzie E", "Narzędzie F", "Narzędzie G"],
   },
   {
-    kicker: "Księgowość, BOK, marketing",
-    items: [
-      "Comarch Optima",
-      "Subiekt",
-      "wFirma",
-      "Zowie",
-      "Zendesk",
-      "Thulium",
-      "GetResponse",
-      "Edrone",
-      "EmailLabs",
-      "Meta",
-      "Google Merchant Center",
-      "Power BI",
-      "Google Cloud",
-    ],
+    kicker: "Grupa trzecia",
+    items: ["Narzędzie H", "Narzędzie I", "Narzędzie J", "Narzędzie K"],
   },
 ];
 
@@ -48,8 +25,8 @@ export function Integrations() {
             Spinamy to, z czym już pracujesz.
           </h2>
           <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Bez migracji, bez wymiany kanałów, bez „wszystko od nowa”. Ponad 30 platform już na
-            pokładzie, kolejne dokładamy przez API.
+            Bez migracji, bez wymiany — gotowe konektory do najpopularniejszych narzędzi, kolejne
+            dokładamy przez API.
           </p>
         </div>
 

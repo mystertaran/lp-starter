@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://fabos.pl/sitemap.xml",
-    host: "https://fabos.pl",
+    sitemap: `${SITE.domain}/sitemap.xml`,
+    host: SITE.domain,
   };
 }

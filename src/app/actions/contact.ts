@@ -2,14 +2,13 @@
 
 import { Resend } from "resend";
 import { z } from "zod";
+import { SITE } from "@/lib/site";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Podaj imię i nazwisko.").max(120),
-  company: z.string().trim().min(2, "Podaj firmę lub domenę sklepu.").max(200),
+  company: z.string().trim().min(2, "Podaj firmę.").max(200),
   email: z.string().trim().toLowerCase().email("Nieprawidłowy adres email."),
   phone: z.string().trim().max(40).optional(),
-  volume: z.enum(["<100", "100-1000", "1000-10000", "10000+"]),
-  channels: z.array(z.string()).max(10),
   message: z.string().trim().max(2000).optional(),
   consent: z.literal("on", { message: "Zaznacz zgodę na przetwarzanie danych." }),
 });
@@ -28,8 +27,6 @@ export async function submitContact(
     company: formData.get("company"),
     email: formData.get("email"),
     phone: formData.get("phone") || undefined,
-    volume: formData.get("volume"),
-    channels: formData.getAll("channels") as string[],
     message: formData.get("message") || undefined,
     consent: formData.get("consent"),
   };
@@ -55,25 +52,23 @@ export async function submitContact(
     console.error("[contact] RESEND_API_KEY is not configured.");
     return {
       status: "error",
-      message: "Formularz jest tymczasowo niedostępny. Napisz bezpośrednio na info@thefabos.pl.",
+      message: `Formularz jest tymczasowo niedostępny. Napisz bezpośrednio na ${SITE.contact.email}.`,
     };
   }
 
   const data = parsed.data;
   const resend = new Resend(apiKey);
 
-  const from = process.env.CONTACT_FROM_EMAIL ?? "The Fabos LP <onboarding@resend.dev>";
-  const to = process.env.CONTACT_TO_EMAIL ?? "info@thefabos.pl";
+  const from = process.env.CONTACT_FROM_EMAIL ?? `${SITE.product} <onboarding@resend.dev>`;
+  const to = process.env.CONTACT_TO_EMAIL ?? SITE.contact.email;
 
   const lines = [
-    "Nowe zapytanie z The Fabos landing page.",
+    `Nowe zapytanie z ${SITE.product} landing page.`,
     "",
     `Imię i nazwisko: ${data.name}`,
-    `Firma / sklep:   ${data.company}`,
+    `Firma:           ${data.company}`,
     `Email:           ${data.email}`,
     data.phone ? `Telefon:         ${data.phone}` : null,
-    `Wolumen m-c:     ${data.volume}`,
-    `Kanały:          ${data.channels.length > 0 ? data.channels.join(", ") : "—"}`,
     "",
     "Wiadomość:",
     data.message ? data.message : "(brak)",

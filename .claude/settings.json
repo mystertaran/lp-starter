@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"try{if(require('fs').readFileSync('.impeccable.md','utf8').includes('{{')){console.log('\\u25B6 lp-starter detected unfilled {{PLACEHOLDERS}} in .impeccable.md. Run /start to bootstrap the brand context.')}}catch(e){}\""
+          }
+        ]
+      }
+    ]
+  }
+}

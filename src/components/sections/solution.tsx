@@ -1,32 +1,10 @@
 const MODULES = [
-  {
-    title: "Zamówienia",
-    description: "Widok wszystkich kanałów sprzedaży w jednym ekranie.",
-  },
-  {
-    title: "Magazyn i preordery",
-    description: "Stany magazynowe synchronizowane w czasie rzeczywistym.",
-  },
-  {
-    title: "Zwroty i reklamacje",
-    description: "Od zgłoszenia klienta po korektę księgową.",
-  },
-  {
-    title: "Faktury i korekty",
-    description: "W obiegu z systemem księgowym — bez ręcznego przepisywania.",
-  },
-  {
-    title: "Strefa BOK",
-    description: "Pełna ścieżka zamówienia w jednym widoku dla obsługi klienta.",
-  },
-  {
-    title: "Feed produktowy",
-    description: "Automatyczna dystrybucja oferty do marketplace'ów i reklam.",
-  },
-  {
-    title: "Automatyzacje",
-    description: "Reguły biznesowe zamiast powtarzalnej ręcznej pracy.",
-  },
+  { title: "Moduł 01", description: "Krótki opis pierwszego modułu produktu." },
+  { title: "Moduł 02", description: "Krótki opis drugiego modułu produktu." },
+  { title: "Moduł 03", description: "Krótki opis trzeciego modułu produktu." },
+  { title: "Moduł 04", description: "Krótki opis czwartego modułu produktu." },
+  { title: "Moduł 05", description: "Krótki opis piątego modułu produktu." },
+  { title: "Moduł 06", description: "Krótki opis szóstego modułu produktu." },
 ] as const;
 
 export function Solution() {
@@ -43,8 +21,8 @@ export function Solution() {
             <br className="md:hidden" /> <span className="text-accent">Architektura.</span>
           </h2>
           <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Zamiast łatać dziury kolejnymi narzędziami — jedno centrum operacyjne, które staje się
-            jedynym źródłem prawdy o zamówieniach, magazynie i finansach.
+            Jedno centrum, które staje się jedynym źródłem prawdy o tym, co naprawdę dzieje się w
+            Twoim biznesie.
           </p>
         </div>
 

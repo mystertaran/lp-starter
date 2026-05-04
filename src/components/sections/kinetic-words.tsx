@@ -3,15 +3,15 @@
 import { motion, useReducedMotion } from "motion/react";
 
 const WORDS = [
-  "zamówienia",
-  "magazyn",
-  "zwroty",
-  "faktury",
-  "marketplace",
-  "kurierzy",
-  "reklamacje",
-  "preordery",
-  "BOK",
+  "procesy",
+  "dane",
+  "ludzie",
+  "narzędzia",
+  "decyzje",
+  "raporty",
+  "automaty",
+  "alerty",
+  "wynik",
 ] as const;
 
 const CHAOS: ReadonlyArray<{ x: number; y: number; rotate: number }> = [
@@ -47,7 +47,7 @@ export function KineticWords() {
       {WORDS.map((word, i) => {
         const chaos = CHAOS[i];
         const targetY = (i - (WORDS.length - 1) / 2) * ROW_HEIGHT;
-        const isAccent = word === "BOK" || word === "zamówienia";
+        const isAccent = i === 0 || i === WORDS.length - 1;
 
         return (
           <motion.div

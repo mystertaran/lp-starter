@@ -3,25 +3,9 @@
 import { useActionState, useEffect, useRef } from "react";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 import { trackEvent } from "@/lib/analytics";
+import { SITE } from "@/lib/site";
 
 const INITIAL: ContactState = { status: "idle" };
-
-const CHANNELS = [
-  "Shopify",
-  "WooCommerce",
-  "Allegro",
-  "Amazon",
-  "Empik",
-  "Własny sklep",
-  "Inne",
-] as const;
-
-const VOLUMES: ReadonlyArray<{ value: string; label: string }> = [
-  { value: "<100", label: "Do 100 zamówień miesięcznie" },
-  { value: "100-1000", label: "100 – 1 000" },
-  { value: "1000-10000", label: "1 000 – 10 000" },
-  { value: "10000+", label: "Ponad 10 000" },
-];
 
 export function ContactForm() {
   const [state, action, pending] = useActionState<ContactState, FormData>(submitContact, INITIAL);
@@ -47,22 +31,22 @@ export function ContactForm() {
             Odebrane
           </p>
           <h2 className="text-display-md font-display text-foreground uppercase">
-            Dziękujemy. Bartek odezwie się w ciągu 24 godzin.
+            Dziękujemy. Odezwiemy się w ciągu 24 godzin.
           </h2>
           <p className="text-muted-foreground mt-6 text-lg leading-relaxed">
             Jeśli potrzebujesz nas wcześniej — napisz na{" "}
             <a
               className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-              href="mailto:info@thefabos.pl"
+              href={`mailto:${SITE.contact.email}`}
             >
-              info@thefabos.pl
+              {SITE.contact.email}
             </a>{" "}
             albo zadzwoń{" "}
             <a
               className="text-foreground decoration-accent font-semibold underline decoration-2 underline-offset-4"
-              href="tel:+48794433282"
+              href={`tel:${SITE.contact.phoneTel}`}
             >
-              <span className="whitespace-nowrap">+48 794 433 282</span>
+              <span className="whitespace-nowrap">{SITE.contact.phone}</span>
             </a>
             .
           </p>
@@ -84,8 +68,8 @@ export function ContactForm() {
             Umówmy rozmowę.
           </h2>
           <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed md:text-xl">
-            30 minut z Bartkiem. Zobaczysz, czy The Fabos pasuje do skali Twoich operacji. Bez
-            slajdów sprzedażowych.
+            30 minut. Zobaczysz, czy {SITE.product} pasuje do skali Twojego biznesu. Bez slajdów
+            sprzedażowych.
           </p>
         </div>
 
@@ -104,7 +88,7 @@ export function ContactForm() {
           />
           <Field
             name="company"
-            label="Firma / domena sklepu"
+            label="Firma"
             required
             autoComplete="organization"
             error={fieldErrors.company}
@@ -127,62 +111,17 @@ export function ContactForm() {
 
           <div className="md:col-span-2">
             <label
-              htmlFor="volume"
-              className="text-muted-foreground text-sm font-semibold tracking-[0.12em] uppercase"
-            >
-              Wolumen zamówień miesięcznie
-            </label>
-            <select
-              id="volume"
-              name="volume"
-              required
-              defaultValue=""
-              className="border-border text-foreground focus:border-accent mt-2 block w-full border-b-2 bg-transparent py-3 text-lg transition-colors outline-none"
-            >
-              <option value="" disabled>
-                Wybierz zakres
-              </option>
-              {VOLUMES.map((v) => (
-                <option key={v.value} value={v.value}>
-                  {v.label}
-                </option>
-              ))}
-            </select>
-            {fieldErrors.volume ? (
-              <p className="text-destructive mt-2 text-sm">{fieldErrors.volume}</p>
-            ) : null}
-          </div>
-
-          <fieldset className="md:col-span-2">
-            <legend className="text-muted-foreground text-sm font-semibold tracking-[0.12em] uppercase">
-              Główne kanały sprzedaży
-            </legend>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {CHANNELS.map((c) => (
-                <label
-                  key={c}
-                  className="border-border bg-background has-[:checked]:border-foreground has-[:checked]:bg-foreground has-[:checked]:text-background inline-flex items-center gap-2 border px-4 py-2 text-sm"
-                >
-                  <input type="checkbox" name="channels" value={c} className="sr-only" />
-                  {c}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <div className="md:col-span-2">
-            <label
               htmlFor="message"
               className="text-muted-foreground text-sm font-semibold tracking-[0.12em] uppercase"
             >
-              Co Cię najbardziej boli? (opcjonalnie)
+              Co Cię interesuje? (opcjonalnie)
             </label>
             <textarea
               id="message"
               name="message"
               rows={5}
               className="border-border bg-background text-foreground focus:border-accent mt-2 block w-full border p-4 text-base transition-colors outline-none"
-              placeholder="Np. zwroty rozjeżdżają się z księgowością, stany nie zgadzają się między kanałami..."
+              placeholder="Powiedz krótko, na czym Ci zależy..."
             />
           </div>
 
@@ -220,7 +159,7 @@ export function ContactForm() {
 
           <div className="flex flex-col-reverse items-start gap-4 sm:flex-row sm:items-center sm:justify-between md:col-span-2">
             <p className="text-muted-foreground text-xs">
-              Twoje dane trafiają tylko do Bartka. Nie zapisujemy Cię do newslettera.
+              Twoje dane trafiają tylko do nas. Nie zapisujemy Cię do newslettera.
             </p>
             <button
               type="submit"

@@ -4,7 +4,6 @@ import { Hero } from "@/components/sections/hero";
 import { Symptoms } from "@/components/sections/symptoms";
 import { Solution } from "@/components/sections/solution";
 import { Integrations } from "@/components/sections/integrations";
-import { CaseNaoko } from "@/components/sections/case-naoko";
 import { Maturity } from "@/components/sections/maturity";
 import { Closer } from "@/components/sections/closer";
 import { ContactForm } from "@/components/sections/contact-form";
@@ -18,7 +17,6 @@ export default function HomePage() {
         <Symptoms />
         <Solution />
         <Integrations />
-        <CaseNaoko />
         <Maturity />
         <Closer />
         <ContactForm />

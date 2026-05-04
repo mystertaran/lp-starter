@@ -1,22 +1,22 @@
 const LEVELS = [
   {
     level: "01",
-    title: "Mały sklep",
-    scope: "SaaS + gotowe integracje.",
+    title: "Etap pierwszy",
+    scope: "Krótki opis tego, jak wygląda biznes na pierwszym etapie.",
     us: "Tu jeszcze nas nie potrzebujesz.",
     active: false,
   },
   {
     level: "02",
-    title: "Rosnący sklep",
-    scope: "Centralizacja danych, lekki OMS, eliminacja chaosu. Jeden widok zamówień i magazynu.",
+    title: "Etap drugi",
+    scope: "Krótki opis tego, jak wygląda biznes na drugim etapie.",
     us: "Zaczynamy tutaj.",
     active: true,
   },
   {
     level: "03",
-    title: "Skala",
-    scope: "Dedykowana platforma operacyjna. Pełna automatyzacja logiki biznesowej.",
+    title: "Etap trzeci",
+    scope: "Krótki opis tego, jak wygląda biznes na trzecim etapie.",
     us: "Idziemy razem dalej.",
     active: true,
   },
@@ -31,12 +31,12 @@ export function Maturity() {
             Gdzie jesteś
           </p>
           <h2 className="text-display-lg font-display text-foreground uppercase">
-            Trzy poziomy
+            Trzy etapy
             <br className="md:hidden" /> dojrzałości
             <br className="md:hidden" /> operacyjnej.
           </h2>
           <p className="text-muted-foreground mt-7 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Pracujemy od poziomu 2. Jeżeli jeszcze nie jesteś gotów — powiemy Ci otwarcie i polecimy
+            Pracujemy od etapu 2. Jeśli jeszcze nie jesteś gotów — powiemy Ci otwarcie i polecimy
             tańsze rozwiązanie.
           </p>
         </div>

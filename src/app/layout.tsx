@@ -3,6 +3,7 @@ import { Archivo, Archivo_Black } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { CookieBanner } from "@/components/cookie-banner";
+import { SITE } from "@/lib/site";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -18,56 +19,36 @@ const archivoBlack = Archivo_Black({
   display: "swap",
 });
 
-const DEFAULT_TITLE = "The Fabos — jedno centrum dowodzenia dla wielokanałowego e-commerce";
-const DEFAULT_DESCRIPTION =
-  "The Fabos spina zamówienia, magazyn, zwroty i księgowość w jedno źródło prawdy. Zamiast kolejnego narzędzia do tego chaosu.";
+const DEFAULT_TITLE = `${SITE.product} — ${SITE.tagline}`;
+const DEFAULT_DESCRIPTION = SITE.tagline;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fabos.pl"),
+  metadataBase: new URL(SITE.domain),
   title: {
     default: DEFAULT_TITLE,
-    template: "%s — The Fabos",
+    template: `%s — ${SITE.product}`,
   },
   description: DEFAULT_DESCRIPTION,
-  applicationName: "The Fabos",
-  authors: [{ name: "The Fabos Sp. z o.o.", url: "https://fabos.pl" }],
-  creator: "The Fabos Sp. z o.o.",
-  publisher: "The Fabos Sp. z o.o.",
-  keywords: [
-    "OMS",
-    "order management system",
-    "platforma operacyjna e-commerce",
-    "integracja kanałów sprzedaży",
-    "zarządzanie zamówieniami",
-    "zarządzanie magazynem",
-    "fulfillment",
-    "zwroty e-commerce",
-    "reklamacje e-commerce",
-    "preordery",
-    "wielokanałowy e-commerce",
-    "Shopify integracja",
-    "Allegro integracja",
-    "Amazon integracja",
-    "księgowość e-commerce",
-    "The Fabos",
-  ],
+  applicationName: SITE.product,
+  authors: [{ name: SITE.company.legal, url: SITE.domain }],
+  creator: SITE.company.legal,
+  publisher: SITE.company.legal,
   category: "technology",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    siteName: "The Fabos",
+    siteName: SITE.product,
     title: DEFAULT_TITLE,
-    description:
-      "Spinamy kanały sprzedaży, fulfillment, zwroty i księgowość w jeden system. Bez wymiany, bez migracji.",
-    url: "https://fabos.pl",
+    description: DEFAULT_DESCRIPTION,
+    url: SITE.domain,
     locale: "pl_PL",
   },
   twitter: {
     card: "summary_large_image",
     title: DEFAULT_TITLE,
-    description: "Spinamy kanały sprzedaży, fulfillment, zwroty i księgowość w jeden system.",
+    description: DEFAULT_DESCRIPTION,
   },
   robots: {
     index: true,
